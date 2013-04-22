@@ -27,5 +27,6 @@
         <activity android:name="MainActivity"></activity>
         <activity android:name="LoginActivity"></activity>
         <activity android:theme="@android:style/Theme.Dialog" android:name="com.jbcb.idong.widget.PreviewImgDlg"></activity>
+        <activity android:name="PartyDetailActivity"></activity>
     </application>
 </manifest>

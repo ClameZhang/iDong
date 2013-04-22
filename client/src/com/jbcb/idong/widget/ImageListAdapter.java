@@ -2,6 +2,7 @@ package com.jbcb.idong.widget;
 
 import java.util.List;
 
+import com.jbcb.idong.PartyDetailActivity;
 import com.jbcb.idong.R;
 import com.jbcb.idong.async.ListViewImageLoader;
 import com.jbcb.idong.cache.PartyListViewCache;
@@ -10,6 +11,7 @@ import com.jbcb.idong.model.Party;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -73,12 +76,22 @@ public class ImageListAdapter extends BaseAdapter {
     	} else {
     		cache = (PartyListViewCache)rowView.getTag();
     	}
-        
+
+        RelativeLayout rl_party = cache.getRelativeLayoutParty();
         ImageView iv_partyicon = cache.getImageViewIcon();
         TextView tv_title = cache.getTextViewTitle();
         TextView tv_detail = cache.getTextViewDetail();
 
-        Party party = partyList.get(position);
+        final Party party = partyList.get(position);
+        
+        rl_party.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ClickParty(party);
+			}
+		});
 
         tv_title.setText(party.getTitle());
         tv_detail.setText(party.getDescription());
@@ -99,14 +112,23 @@ public class ImageListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Click(imageURL);
+            	ClickIcon(imageURL);
             }
         });
 
         return rowView;
     }
 
-    public void Click(String imageURL) {
+    public void ClickParty(Party party) {
+        Intent intent = new Intent();
+        Bundle mBundle = new Bundle();
+        mBundle.putSerializable("Party", party);
+        intent.putExtras(mBundle);
+        intent.setClass(context, PartyDetailActivity.class);
+        context.startActivity(intent);
+    }
+
+    public void ClickIcon(String imageURL) {
         Intent intent = new Intent();
         intent.putExtra("imageurl", imageURL);
         intent.setClass(context, PreviewImgDlg.class);

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:textAlignment="center" >
+
+    <RelativeLayout
+        android:id="@+id/rl_title_search"
+        android:layout_width="fill_parent"
+        android:layout_height="35dip"
+        android:background="@color/bar_background" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/partydetail_head_text_title"
+            android:textColor="@color/text_white"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/content_background"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_partydetailtitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+        		android:background="@color/bar_background"
+                android:textColor="@color/text_white"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/iv_partydetailicon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginTop="6dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

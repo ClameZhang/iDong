@@ -9,5 +9,6 @@
     <string name="login_text_title">爱    动</string>
     <string name="login_text_username">用户名</string>
     <string name="login_text_password">密  码</string>
+    <string name="partydetail_head_text_title">活动详情</string>
 
 </resources>

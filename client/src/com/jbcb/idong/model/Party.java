@@ -3,6 +3,7 @@
  */
 package com.jbcb.idong.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -11,8 +12,13 @@ import java.util.Set;
  * Should not be extended.
  * @author Jiayu
  */
-public final class Party {
+public final class Party implements Serializable   {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7060210544600464481L;
+
 	public Party() {}
 	
 	public Long getPartyID() {

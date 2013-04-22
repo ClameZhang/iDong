@@ -4,6 +4,7 @@ import com.jbcb.idong.R;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -13,12 +14,20 @@ import android.widget.TextView;
  */
 public class PartyListViewCache {
 	private View baseView;
+	private RelativeLayout relativelayout_partybody;
 	private TextView textView_title;
 	private TextView textView_detail;
 	private ImageView imageView_icon;
 
 	public PartyListViewCache(View baseView) {
 		this.baseView = baseView;
+	}
+
+	public RelativeLayout getRelativeLayoutParty() {
+		if (relativelayout_partybody == null) {
+			relativelayout_partybody = (RelativeLayout) baseView.findViewById(R.id.rl_partybody);
+		}
+		return relativelayout_partybody;
 	}
 
 	public TextView getTextViewTitle() {
