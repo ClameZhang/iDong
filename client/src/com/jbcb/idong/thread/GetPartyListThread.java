@@ -10,7 +10,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Message;
 
@@ -46,8 +45,6 @@ public class GetPartyListThread extends Thread {
                     Party party = new Party();
                     party.setTitle(title);
                     party.setDescription(description);
-                    Bitmap img = CommonUtility.getImageThumbnail(thumbnail, 80, 80);
-                    party.setThumbnail(img);
                     party.setThumbnailURL(thumbnail);
                     partyList.add(party);
                 }

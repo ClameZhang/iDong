@@ -1,12 +1,12 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/bottombar_item_mine" android:state_pressed="true"/>
+    <item android:drawable="@drawable/bottombar_item_mine_selected" android:state_pressed="true"/>
  <!-- pressed -->
-    <item android:drawable="@drawable/bottombar_item_mine" android:state_focused="true"/>
+    <item android:drawable="@drawable/bottombar_item_mine_selected" android:state_focused="true"/>
  <!-- focused -->
-    <item android:drawable="@drawable/bottombar_item_mine" android:state_selected="true"/>
+    <item android:drawable="@drawable/bottombar_item_mine_selected" android:state_selected="true"/>
  <!-- selected -->
-    <item android:drawable="@drawable/bottombar_item_mine_selected"/>
+    <item android:drawable="@drawable/bottombar_item_mine"/>
  <!-- normal -->
 
 </selector>

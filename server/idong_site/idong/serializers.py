@@ -21,14 +21,29 @@ class PartyBriefSerializer(serializers.ModelSerializer):
 class PartyDetailSerializer(serializers.ModelSerializer):
     participant_num = serializers.Field(source='get_participants_num')
     liker_num = serializers.Field(source='get_likers_num')
-    laucher_user = serializers.Field(source='laucher_user.username')
+    initiator_user = serializers.Field(source='initiator_user.username')
     class Meta:
         model = Party
         # TODO: Include participants name list
         # to show who also participate
         fields = ('id', 'title', 'category', 'start_time', 'end_time', 'location',
-            'participant_num', 'liker_num', 'image_urls', 'laucher_user', 'description', )
+            'participant_num', 'liker_num', 'image_urls', 'initiator_user', 'description', )
 
+from rest_framework import serializers
+class PartySerializer(serializers.Serializer):
+    initiator_user = serializers.CharField(max_length=20)
+    title = serializers.CharField(max_length=50)
+    end_time = serializers.DateField()
+
+    def restore_object(self, attrs, instance=None):
+        if 'initiator_user' in attrs:
+            user = User.objects.get(username=attrs['initiator_user'])
+            attrs['initiator_user'] = user
+        if instance is not None:
+            instance.title = attrs.get('title', instance.title)
+            return instance
+        return Party(**attrs)
+        
 class UserImagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserImages
@@ -37,4 +52,4 @@ class UserImagesSerializer(serializers.ModelSerializer):
 class PartyImagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = PartyImages
-        fields = ('id', 'party', 'date','title', 'image', 'imgtype')
+        fields = ('id', 'party', 'date','title', 'image', 'imgtype')        

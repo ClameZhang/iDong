@@ -1,6 +1,6 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:state_pressed="true" android:color="#3F96F3" /> <!-- pressed -->
-<item android:state_focused="true" android:color="#3F96F3" /> <!-- focused -->
-<item android:state_selected="true" android:color="#3F96F3" /> <!-- selected -->
+<item android:state_pressed="true" android:color="#f7fafc" /> <!-- pressed -->
+<item android:state_focused="true" android:color="#f7fafc" /> <!-- focused -->
+<item android:state_selected="true" android:color="#f7fafc" /> <!-- selected -->
 <item android:color="#404040" /> <!-- default 这个要在最底下，不然没有效果-->
 </selector>

@@ -10,15 +10,15 @@ SPORT_CHOICES=(
     ('3', 'Biking'),
 )
 
+
 # specify orignal pic or thumbs
 IMAGE_TYPE=(
     ('0', '0'),   # orignal pic
     ('1', '128'), # 128 X 128 thumb
     ('2', '256'), # 256 X 256 thumb
 )
-
 class Party(models.Model):
-    laucher_user= models.ForeignKey('auth.User', related_name='parties')
+    initiator_user = models.ForeignKey('auth.User', related_name='parties')
     title       = models.CharField(max_length='50', blank=True)
     #category    = models.PositiveSmallIntegerField(blank=True)
     # TODO: related to PartyType
@@ -82,6 +82,14 @@ class PartyType:
     description = models.TextField(max_length='400')
     calorie_per_hour = models.PositiveSmallIntegerField()
 
+class UserImages:
+    user = models.ForeignKey('auth.User', related_name='user_images')
+    url  = models.CharField(max_length=4000 )
+
+class PartyImages:
+    party = models.ForeignKey(Party, related_name='party_images')
+    url   = models.CharField(max_length=4000)
+
 class UserImages(models.Model):
     user = models.ForeignKey('auth.User', related_name='user_images')
     date = models.DateTimeField(auto_now_add = True)
@@ -96,4 +104,3 @@ class PartyImages(models.Model):
     title  = models.CharField(max_length=100)
     image  = models.CharField(max_length=4000 )
     imgtype = models.CharField(max_length=2)
-

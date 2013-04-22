@@ -1,0 +1,116 @@
+﻿{% extends "idong/base.html" %}
+
+{% load url from future %}
+
+{% block title %}
+iDong --- List all parties
+{% endblock %}
+
+
+{% block content %}
+<div class="article">
+  
+  <ul class="events-list events-list-pic100 events-list-psmall">
+
+    {% for party in all_parties %}
+      <li class="list-entry" itemscope="" itemtype="http://data-vocabulary.org/Event">
+      <div class="pic">
+        <a href="{% url 'idong:web_detail' party.id %}">
+          <img data-lazy="{{ party.image_urls }}" src="{{ party.image_urls }}" width="110" itemprop="photo">
+        </a>
+      </div>
+      <div class="info">
+        <div class="title">
+          <a href="{% url 'idong:web_detail' party.id %}" title="{{ party.title }}" itemprop="url">
+            <span itemprop="summary">{{ party.title }}</span>
+          </a>
+        </div>
+        
+          <p class="event-cate-tag">
+            <a href="http://www.douban.com/event/search?loc=shanghai&amp;search_text=%E9%9F%B3%E4%B9%90%E8%8A%82&amp;p=week">{{ party.category }}</a>
+        <ul>
+          <li class="event-time">
+            <span>时间：</span>
+            
+            {{ party.start_time }} ~ {{ party.end_time }}
+            <!--TODO: What effect do the following two fields make?-->
+            <time itemprop="startDate" datetime="2013-04-18T14:00:00"></time>
+            <time itemprop="endDate" datetime="2013-04-27T14:30:00"></time>
+          </li>
+          <li title="{{ party.location }}">
+            <span>地点：</span>
+              {{ party.location }}
+             <meta itemscope="" itemprop="location" content="{{ party.location }}">
+          </li>
+          <li class="fee">
+            
+              <span>费用：</span>
+              <strong>免费</strong>
+          </li>
+          <li>
+            <span>发起：</span>
+            <a target="db-event-owner" href="{% url 'idong:user_detail' party.initiator_user.id %}">{{ party.initiator_user }}</a>
+          </li>
+        </ul>
+        <p class="counts">
+            <span>{{ party.participants.all.count }}人参加</span> <span class="pipe"></span> <span>{{ party.likers.all.count }}人感兴趣</span>
+        </p>
+      </div>
+      </li>
+
+    {% endfor %}
+
+
+
+
+      <li class="list-entry" itemscope="" itemtype="http://data-vocabulary.org/Event">
+      <div class="pic">
+        <a href="http://www.douban.com/event/18681059/">
+          <img data-lazy="http://img3.douban.com/pview/event_poster/median/public/fd4c304edc0b868.jpg" src="http://img3.douban.com/pview/event_poster/median/public/fd4c304edc0b868.jpg" width="110" itemprop="photo">
+        </a>
+      </div>
+      <div class="info">
+        <div class="title">
+          <a href="http://www.douban.com/event/18681059/" title="Travis、张悬、Lenka、彭坦领衔 上海草莓音乐节 门票免费抢！！" itemprop="url">
+            <span itemprop="summary">Travis、张悬、Lenka、彭坦领衔 上海草莓音乐节 门票免费抢！！</span>
+          </a>
+        </div>
+        
+          <p class="event-cate-tag">
+            <a href="http://www.douban.com/event/search?loc=shanghai&amp;search_text=%E9%9F%B3%E4%B9%90%E8%8A%82&amp;p=week">音乐节</a>&nbsp;
+            <a href="http://www.douban.com/event/search?loc=shanghai&amp;search_text=%E8%8D%89%E8%8E%93%E9%9F%B3%E4%B9%90%E8%8A%82&amp;p=week">草莓音乐节</a>&nbsp;
+            <a href="http://www.douban.com/event/search?loc=shanghai&amp;search_text=%E6%91%87%E6%BB%9A&amp;p=week">摇滚</a>&nbsp;
+          </p>
+        <ul>
+          <li class="event-time">
+            <span>时间：</span>
+            
+            04月18日 ~ 04月27日 每天14:00-14:30 
+            <time itemprop="startDate" datetime="2013-04-18T14:00:00"></time>
+            <time itemprop="endDate" datetime="2013-04-27T14:30:00"></time>
+          </li>
+          <li title="上海 浦东新区 世博公园">
+            <span>地点：</span>
+              浦东新区
+            世博公园
+             <meta itemscope="" itemprop="location" content="上海 浦东新区 世博公园">
+          </li>
+          <li class="fee">
+            
+              <span>费用：</span>
+              <strong>免费</strong>
+          </li>
+          <li>
+            <span>发起：</span>
+            <a target="db-event-owner" href="http://site.douban.com/chinaticket/">中票在线</a>
+          </li>
+        </ul>
+        <p class="counts">
+            <span>486人参加</span> <span class="pipe"></span> <span>118人感兴趣</span>
+        </p>
+      </div>
+      </li>
+  </ul>
+
+</div>
+{% endblock %}

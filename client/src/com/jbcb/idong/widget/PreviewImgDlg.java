@@ -1,12 +1,15 @@
 package com.jbcb.idong.widget;
 
+import com.jbcb.idong.async.NormalImageLoader;
+
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
-import android.view.Display;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
@@ -19,6 +22,7 @@ import android.widget.ImageView;
 public class PreviewImgDlg extends Activity {
 
 	/** Called when the activity is first created. */
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -30,50 +34,24 @@ public class PreviewImgDlg extends Activity {
         
 		Intent intent = this.getIntent();
 		if (intent.getExtras() != null) {
-			String imagePath = intent.getExtras().getString("imageurl");
+			String imageurl = intent.getExtras().getString("imageurl");
 			
-			BitmapFactory.Options options = new BitmapFactory.Options();
-			options.inJustDecodeBounds = true;
-			Bitmap bmp = BitmapFactory.decodeFile(imagePath, options);
-			
-			int width = options.outWidth;//��
-			int height = options.outHeight;//��
-			
-			Display display = getWindowManager().getDefaultDisplay();
-			Point point = new Point();
-			display.getSize(point);
-			int screenHeight = point.y;
-			int screenWidth = point.x;
-			
-			boolean isWidthBig = false;
-			boolean isHeightBig = false;
-			
-			if (width >= screenWidth) {
-				isWidthBig = true;
-			}
-			
-			if (height >= screenHeight) {
-				isHeightBig = true;
-			}
-			
-			float rate = 1;
-			if ( isWidthBig && isHeightBig ) {
-				rate = (float)width / (float)screenWidth;
-				if ( rate < (float)height / (float)screenHeight ) {
-					rate = (float)height / (float)screenHeight;
-				}
-			} else if ( !isWidthBig && isHeightBig ) {
-				rate = (float)height / (float)screenHeight;
-			} else if ( isWidthBig && !isHeightBig ) {
-				rate = (float)width / (float)screenHeight;
-			}
-			
-			options.outWidth = (int) Math.round(width / rate + 0.5);
-			options.outHeight = (int) Math.round(height / rate + 0.5);
-			options.inJustDecodeBounds = false;
-			bmp = BitmapFactory.decodeFile(imagePath, options);
-			image.setImageBitmap(bmp);
+	        DisplayMetrics dm = new DisplayMetrics();
+	        getWindowManager().getDefaultDisplay().getMetrics(dm);			
+			NormalImageLoader yncTask=new NormalImageLoader(imageurl, dm.widthPixels * dm.heightPixels, image);
+			yncTask.execute();
 		}
+		
+		this.setFinishOnTouchOutside(true);
+		
+		image.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				PreviewImgDlg.this.finish();
+			}
+		});
 	}
 
 }

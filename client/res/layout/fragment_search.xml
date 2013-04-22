@@ -4,15 +4,15 @@
     android:layout_height="fill_parent" >
 
     <RelativeLayout
-        android:id="@+id/rl_title"
+        android:id="@+id/rl_title_search"
         android:layout_width="fill_parent"
-        android:layout_height="45dip"
+        android:layout_height="35dip"
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/bg_above"
-        android:gravity="center" >
+        android:background="@color/bar_background" >
 
-       <!--  <Button
+        <!--
+             <Button
             android:id="@+id/btn_back"
             android:layout_width="70dip"
             android:layout_height="fill_parent"
@@ -22,9 +22,12 @@
             android:layout_marginTop="5dip"
             android:background="@drawable/title_btn_back_selector"
             android:text="@string/workbench_home_page"
-            android:textColor="@color/title_button_color_gray" /> -->
+            android:textColor="@color/title_button_color_gray" />
+        -->
 
-       <!--   <Button
+
+        <!--
+              <Button
             android:id="@+id/btn_add"
             android:layout_width="70dip"
             android:layout_height="fill_parent"
@@ -34,7 +37,8 @@
             android:layout_marginTop="5dip"
             android:background="@drawable/title_btn_rect_selector"
             android:text="@string/workbench_add_task"
-            android:textColor="@color/title_button_color_gray" /> -->
+            android:textColor="@color/title_button_color_gray" />
+        -->
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,19 +46,27 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="@string/bottombar_text_search"
-            android:textColor="@color/text_blue"
-            android:textSize="20sp" />
+            android:textColor="@color/text_white"
+            android:textSize="15sp" />
     </RelativeLayout>
 
-    <com.jbcb.idong.widget.ImageListView
-        android:id="@+id/lv_search_partylist"
+    <RelativeLayout
+        android:id="@+id/rl_content_search"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_title"
-        android:divider="#bfffff"  
- 	    android:background="#00000000"
-        android:dividerHeight="10dp" 
-        android:orientation="vertical" >
-    </com.jbcb.idong.widget.ImageListView>
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/rl_title_search"
+        android:background="@color/content_background"
+        android:gravity="center" >
+
+        <com.jbcb.idong.widget.ImageListView
+            android:id="@+id/lv_search_partylist"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:divider="@color/content_background"
+            android:dividerHeight="5dp"
+            android:orientation="vertical" >
+        </com.jbcb.idong.widget.ImageListView>
+    </RelativeLayout>
 
 </RelativeLayout>

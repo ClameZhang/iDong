@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="center"
-    android:background="@drawable/bg_bottom"
+    android:background="@color/bar_background"
     android:gravity="center"
     android:orientation="horizontal" >
 

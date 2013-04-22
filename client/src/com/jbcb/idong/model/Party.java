@@ -6,8 +6,6 @@ package com.jbcb.idong.model;
 import java.util.Date;
 import java.util.Set;
 
-import android.graphics.Bitmap;
-
 /**
  * Data model of iDong party. 
  * Should not be extended.
@@ -69,14 +67,6 @@ public final class Party {
 		return thumbnailURL;
 	}
 
-	public void setThumbnail(Bitmap thumbnail) {
-		this.thumbnail = thumbnail;
-	}
-
-	public Bitmap getThumbnail() {
-		return thumbnail;
-	}
-
 	public void setLocation(String location) {
 		this.location = location;
 	}
@@ -122,7 +112,6 @@ public final class Party {
 	private String location;
 	
 	private String thumbnailURL;
-	private Bitmap thumbnail;
 	
 	private Set<String> partyImageURLSet;	//Image URLs for party, should not be repeated
 	

@@ -1,0 +1,24 @@
+before_script:
+  - sudo apt-get install pandoc
+  # here you can check os environment, it is ubuntu natty  
+  - uname -a
+  - lsb_release -a
+
+language: python
+
+python:
+  - "2.7"
+  # does not have headers provided, please ask https://launchpad.net/~pypy/+archive/ppa
+  # maintainers to fix their pypy-dev package.
+  #- "pypy"
+
+# command to install dependencies
+install:
+  - pip install -r requirements.txt --use-mirrors
+  #- pip install . --use-mirrors
+
+# command to run tests
+script: nosetests 
+
+after_script:
+  - env
