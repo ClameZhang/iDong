@@ -12,9 +12,9 @@ SPORT_CHOICES=(
 
 # specify orignal pic or thumbs
 IMAGE_TYPE=(
-    ('0', 'Orignal'),
-    ('1', '100 X 100'),
-    ('2', '200 X 200'),
+    ('0', '0'),   # orignal pic
+    ('1', '128'), # 128 X 128 thumb
+    ('2', '256'), # 256 X 256 thumb
 )
 
 class Party(models.Model):
